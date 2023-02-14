@@ -15,7 +15,7 @@ namespace TCPClient
             client.Connect("127.0.0.1", 5000);
             NetworkStream stream = client.GetStream();
 
-            string astmMessage = "\u0002" + "1H|\\^&|||CS-5100^01-22^11025^^^CS-5100^BY990757||||||||E1394-97\r" + "\u0003" + "FD\r\n";
+            string astmMessage = "\u0002" + "<STX>3O|1||000002^06^              1^B^^N||R||||||N<CR><ETX>D4<CR><LF>\r" + "\u0003" + "FD\r\n";
 
             bool endOfMessages = false;
             while (!endOfMessages)

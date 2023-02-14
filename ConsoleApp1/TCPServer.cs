@@ -2,7 +2,13 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace TcpServer
 {
@@ -68,12 +74,48 @@ namespace TcpServer
             string[] segments = astmMessage.Split('|');
 
             // Extract some fields from the message
-            string patientId = segments[3];
-            string testName = segments[4];
-            string testResult = segments[13];
+            string[] sampleIDMessage = segments[3].Split('^');
 
-            // Translate the message fields into a human-readable format
-            string translatedMessage = "Test result for patient " + patientId + ": " + testName + " = " + testResult;
+            string sampId = sampleIDMessage[2].Replace("?","");
+
+
+            try
+            {
+                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+                //Provider=SQLNCLI11;Server=LAPTOP-780M63QV\VGSM;Database=sm21_new;User Id=SM_21_2;Password=Orbis123;MARS Connection=true;
+                builder.DataSource = "LAPTOP-780M63QV\\VGSM";
+                builder.UserID = "SM_21_2";
+                builder.Password = "Orbis123";
+                builder.InitialCatalog = "sm21_new";
+
+                using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                {
+                    Console.WriteLine("\nQuery data example:");
+                    Console.WriteLine("=========================================\n");
+
+                    connection.Open();
+
+                    String sql = "SELECT test_number, analysis FROM TEST where sample = " + sampId.Replace(" ","");
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Console.WriteLine("{0} {1}", reader.GetString(0), reader.GetString(1));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+
+            string translatedMessage = "Test result for ";
 
             return translatedMessage;
         }
