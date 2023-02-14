@@ -1,0 +1,7 @@
+D:\Repositories\gitHub\KMD_GIT\SiemensTCPIP\TCPClient\TCPClient\bin\Debug\TCPClient.exe.config
+D:\Repositories\gitHub\KMD_GIT\SiemensTCPIP\TCPClient\TCPClient\bin\Debug\TCPClient.exe
+D:\Repositories\gitHub\KMD_GIT\SiemensTCPIP\TCPClient\TCPClient\bin\Debug\TCPClient.pdb
+D:\Repositories\gitHub\KMD_GIT\SiemensTCPIP\TCPClient\TCPClient\obj\Debug\TCPClient.csproj.AssemblyReference.cache
+D:\Repositories\gitHub\KMD_GIT\SiemensTCPIP\TCPClient\TCPClient\obj\Debug\TCPClient.csproj.CoreCompileInputs.cache
+D:\Repositories\gitHub\KMD_GIT\SiemensTCPIP\TCPClient\TCPClient\obj\Debug\TCPClient.exe
+D:\Repositories\gitHub\KMD_GIT\SiemensTCPIP\TCPClient\TCPClient\obj\Debug\TCPClient.pdb
